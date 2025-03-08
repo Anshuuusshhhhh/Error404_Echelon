@@ -1,0 +1,236 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #EEEEEE;
+}
+
+/* Fixed Navigation Bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #3B1E54;
+    padding: 10px 20px;
+    text-align: center;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 12px;
+}
+
+.navbar ul li a:hover {
+    background-color: #9B7EBD;
+    border-radius: 5px;
+}
+
+/* Fixed Sidebar */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 50px;
+    width: 220px;
+    height: 100%;
+    background-color: #9B7EBD;
+    padding-top: 20px;
+    z-index: 999;
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 15px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #D4BEE4;
+}
+
+/* Main Dashboard */
+.dashboard {
+    margin-left: 250px; /* Adjust for sidebar */
+    margin-top: 80px; /* Adjust for navbar */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-rows: repeat(4, auto); /* 4 rows */
+    gap: 40px 20px; /* More space between horizontal boxes */
+    padding: 20px;
+}
+
+/* Dashboard Box */
+.dashboard-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    min-height: 200px; /* Ensure consistent height */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect - Darken Other Boxes */
+.dashboard:hover .dashboard-box {
+    filter: brightness(0.7);
+}
+
+.dashboard-box:hover {
+    transform: scale(1.05);
+    filter: brightness(1) !important;
+}
+
+/* Chatbot Button */
+.chatbot-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3B1E54;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.chatbot-btn:hover {
+    background-color: #9B7EBD;
+}
+
+/* Chatbot Overlay */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+}
+
+/* Chatbot Window */
+.chatbot-container {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 400px;
+    height: 600px; /* Taller Chatbot */
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1002;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Chatbot Header */
+.chatbot-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Close Button */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Chatbot Messages */
+.chatbot-body {
+    flex-grow: 1; /* Makes chatbot body scrollable */
+    overflow-y: auto;
+    padding: 10px;
+    max-height: 450px;
+}
+
+.bot-message {
+    background: #D4BEE4;
+    padding: 8px;
+    border-radius: 5px;
+    margin: 5px 0;
+    text-align: left;
+}
+
+/* Chatbot Footer */
+.chatbot-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chatbot-footer input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.chatbot-footer button {
+    padding: 10px;
+    background: #3B1E54;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.chatbot-footer button:hover {
+    background: #9B7EBD;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}

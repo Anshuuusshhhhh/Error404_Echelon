@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Churn Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Churn Analyzer</div>
+        <ul>
+            <li><a href="landingpage.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="#section1">Tenure</a></li>
+            <li><a href="#section2">Cashback Amount</a></li>
+            <li><a href="#section3">Warehouse Distance</a></li>
+            <li><a href="#section4">Last Order Days</a></li>
+            <li><a href="#section5">Satisfaction Score</a></li>
+            <li><a href="#section6">Preferred Payment</a></li>
+            <li><a href="#section7">Order Count</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Dashboard -->
+    <main class="dashboard">
+        <div class="dashboard-box" id="section1">
+            <h3>Tenure</h3>
+            <div class="graph-container" id="graph1"></div>
+        </div>
+        <div class="dashboard-box" id="section2">
+            <h3>Cashback Amount</h3>
+            <div class="graph-container" id="graph2"></div>
+        </div>
+        <div class="dashboard-box" id="section3">
+            <h3>Warehouse Distance</h3>
+            <div class="graph-container" id="graph3"></div>
+        </div>
+        <div class="dashboard-box" id="section4">
+            <h3>Last Order Days</h3>
+            <div class="graph-container" id="graph4"></div>
+        </div>
+        <div class="dashboard-box" id="section5">
+            <h3>Satisfaction Score</h3>
+            <div class="graph-container" id="graph5"></div>
+        </div>
+        <div class="dashboard-box" id="section6">
+            <h3>Preferred Payment</h3>
+            <div class="graph-container" id="graph6"></div>
+        </div>
+        <div class="dashboard-box" id="section7">
+            <h3>Order Count</h3>
+            <div class="graph-container" id="graph7"></div>
+        </div>
+    </main>
+
+    <!-- Chatbot Button -->
+    <button class="chatbot-btn" onclick="toggleChat()">💬</button>
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container" id="chatbot">
+        <div class="chatbot-header">
+            <span>Chat with AI</span>
+            <button class="close-btn" onclick="toggleChat()">✖</button>
+        </div>
+        <div class="chatbot-body" id="chatbox">
+            <p class="bot-message">Hello! How can I assist you today?</p>
+        </div>
+        <div class="chatbot-footer">
+            <input type="text" id="userInput" placeholder="Type a message...">
+            <input type="file" id="fileUpload">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- Dark Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
