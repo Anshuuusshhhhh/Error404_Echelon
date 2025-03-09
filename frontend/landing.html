@@ -3,241 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
-    <style>
-        /* General Styling */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #EEEEEE;
-}
-
-/* Navigation Bar */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #3B1E54;
-    padding: 10px 20px;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-}
-
-.nav-left ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-}
-
-.nav-left ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-.nav-left ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 8px 12px;
-}
-
-.nav-left ul li a:hover {
-    background-color: #9B7EBD;
-    border-radius: 5px;
-}
-
-/* Main Landing Page */
-.landing-content {
-    text-align: center;
-    margin-top: 100px;
-    padding: 20px;
-}
-
-.landing-content h1 {
-    font-size: 36px;
-    color: #3B1E54;
-}
-
-.landing-content p {
-    font-size: 18px;
-    color: #666;
-}
-
-.explore-btn {
-    background-color: #3B1E54;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
-.explore-btn:hover {
-    background-color: #9B7EBD;
-}
-
-/* Chatbot Button */
-.chatbot-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #3B1E54;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-.chatbot-btn:hover {
-    background-color: #9B7EBD;
-}
-
-/* Chatbot Interface */
-.chatbot-container {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    right: 20px;
-    width: 400px;
-    height: 500px;
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1002;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Chatbot Header */
-.chatbot-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    font-size: 18px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Chatbot Messages */
-.chatbot-body {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 10px;
-    max-height: 400px;
-}
-
-/* Bot and User Messages */
-.bot-message {
-    background: #D4BEE4;
-    padding: 8px;
-    border-radius: 5px;
-    margin: 5px 0;
-    text-align: left;
-}
-
-.user-message {
-    background: #9B7EBD;
-    padding: 8px;
-    border-radius: 5px;
-    margin: 5px 0;
-    text-align: right;
-    color: white;
-}
-
-/* Chatbot Footer */
-.chatbot-footer {
-    display: flex;
-    gap: 10px;
-}
-
-.chatbot-footer input {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.chatbot-footer button {
-    padding: 10px;
-    background: #3B1E54;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.chatbot-footer button:hover {
-    background: #9B7EBD;
-}
-    </style>
+    <title>InsightFlow - Unlock Insights, Predict Success</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-left">
-            <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">About Us</a></li>
-            </ul>
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="Landing.html">
+                    <div class="logo-circle">IF</div>
+                    <span class="logo-text">InsightFlow</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Landing.html" class="active">Home</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Main Landing Page Content -->
-    <div class="landing-content">
-        <h1>Welcome to Our Platform</h1>
-        <p>Your one-stop solution for personalized learning and skill enhancement.</p>
-        <button class="explore-btn">Explore Now</button>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="animate-fade-in">Unlock Insights, Predict Success</h1>
+                    <p class="animate-fade-in delay-1">InsightFlow helps you transform your data into actionable insights with powerful AI-driven analytics.</p>
+                    <div class="hero-buttons animate-fade-in delay-2">
+                        <a href="dashboard.html" class="btn btn-primary">Explore Dashboard <i class="fas fa-arrow-right"></i></a>
+                        <a href="about.html" class="btn btn-outline">Meet Our Team</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>Powerful Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Advanced Analytics</h3>
+                        <p>Transform complex data into clear, actionable insights with our advanced analytics tools.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>AI-Powered Predictions</h3>
+                        <p>Leverage machine learning to forecast trends and make data-driven decisions.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Interactive Dashboards</h3>
+                        <p>Customize your view with interactive dashboards that update in real-time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <input type="checkbox" id="chatbot-toggle" class="chatbot-checkbox">
+    <div class="chatbot-container">
+        <label for="chatbot-toggle" class="chatbot-button">
+            <i class="fas fa-comment"></i>
+        </label>
+        <div class="chatbot-panel">
+            <div class="chatbot-header">
+                <div class="chatbot-title">
+                    <div class="chatbot-icon"><i class="fas fa-comment"></i></div>
+                    <h3>InsightFlow Assistant</h3>
+                </div>
+                <label for="chatbot-toggle" class="chatbot-close">
+                    <i class="fas fa-times"></i>
+                </label>
+            </div>
+            <div class="chatbot-messages" id="chat-messages">
+                <div class="message bot">
+                    <p>Hi there! How can I help you today?</p>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <div class="file-upload">
+                    <i class="fas fa-paperclip"></i>
+                </div>
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button class="send-button" onmouseenter="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
     </div>
 
-    <!-- Chatbot Button -->
-    <button class="chatbot-btn" onclick="toggleChatbot()">💬</button>
-
-    <!-- Chatbot Interface -->
-    <div class="chatbot-container" id="chatbot">
-        <div class="chatbot-header">
-            Chat with Us
-            <button class="close-btn" onclick="toggleChatbot()">✖</button>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 InsightFlow. All rights reserved.</p>
         </div>
-        <div class="chatbot-body" id="chat-body">
-            <p class="bot-message">Hello! How can I assist you?</p>
-        </div>
-        <div class="chatbot-footer">
-            <input type="text" id="chat-input" placeholder="Type a message...">
-            <button onclick="sendMessage()">Send</button>
-        </div>
-    </div>
+    </footer>
 
     <script>
-        function toggleChatbot() {
-            let chatbot = document.getElementById("chatbot");
-            chatbot.style.display = chatbot.style.display === "block" ? "none" : "block";
-        }
+        async function sendMessage() {
+            const inputField = document.getElementById("chat-input");
+            const message = inputField.value.trim();
+            if (!message) return;
 
-        function sendMessage() {
-            let input = document.getElementById("chat-input");
-            let message = input.value.trim();
-            if (message !== "") {
-                let chatBody = document.getElementById("chat-body");
-                let userMessage = document.createElement("p");
-                userMessage.className = "user-message";
-                userMessage.textContent = message;
-                chatBody.appendChild(userMessage);
-                input.value = "";
-                chatBody.scrollTop = chatBody.scrollHeight;
+            const chatMessages = document.getElementById("chat-messages");
+
+            // Add User Message
+            const userMessage = document.createElement("div");
+            userMessage.className = "message user";
+            userMessage.innerHTML = `<p>${message}</p>`;
+            chatMessages.appendChild(userMessage);
+
+            // Clear input field
+            inputField.value = "";
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/chatbot", { // Changed to chatbot.py
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+                const botMessage = document.createElement("div");
+                botMessage.className = "message bot";
+                botMessage.innerHTML = `<p>${data.reply}</p>`;
+                chatMessages.appendChild(botMessage);
+            } catch (error) {
+                console.error("Error communicating with chatbot:", error);
+                const errorMessage = document.createElement("div");
+                errorMessage.className = "message bot";
+                errorMessage.innerHTML = `<p>Oops! Something went wrong.</p>`;
+                chatMessages.appendChild(errorMessage);
             }
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         }
     </script>
-
 </body>
 </html>

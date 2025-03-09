@@ -44,46 +44,45 @@
 
         <main class="dashboard-content">
             <div class="dashboard-grid">
-                <div id="overview" class="dashboard-box active">
-                    <h3>Overview</h3>
-                    <div class="visualization-placeholder">
-                        <p>Visualization placeholder for Overview</p>
+                <div id="section1" class="dashboard-box active">
+                    <h3>Cumulative Churn</h3>
+                    <div class="visualization-placeholder" id="graph1">
                     </div>
                 </div>
-                <div id="analytics" class="dashboard-box">
-                    <h3>Analytics</h3>
-                    <div class="visualization-placeholder">
-                        <p>Visualization placeholder for Analytics</p>
+                <div id="section2" class="dashboard-box">
+                    <h3>Cumulative CHI</h3>
+                    <div class="visualization-placeholder" id="graph2">
+                        
                     </div>
                 </div>
-                <div id="predictions" class="dashboard-box">
-                    <h3>Predictions</h3>
-                    <div class="visualization-placeholder">
-                        <p>Visualization placeholder for Predictions</p>
+                <div id="section3" class="dashboard-box">
+                    <h3>CHI Ranking</h3>
+                    <div class="visualization-placeholder" id="graph3">
+                        
                     </div>
                 </div>
-                <div id="reports" class="dashboard-box">
-                    <h3>Reports</h3>
-                    <div class="visualization-placeholder">
-                        <p>Visualization placeholder for Reports</p>
+                <div id="section4" class="dashboard-box">
+                    <h3>Engagement Velocity</h3>
+                    <div class="visualization-placeholder" id="graph4">
+                        
                     </div>
                 </div>
-                <div id="insights" class="dashboard-box">
-                    <h3>Insights</h3>
-                    <div class="visualization-placeholder">
-                        <p>Visualization placeholder for Insights</p>
+                <div id="section5" class="dashboard-box">
+                    <h3>Payment Behavior</h3>
+                    <div class="visualization-placeholder" id="graph5">
+                       
                     </div>
                 </div>
-                <div id="trends" class="dashboard-box">
-                    <h3>Trends</h3>
-                    <div class="visualization-placeholder">
-                        <p>Visualization placeholder for Trends</p>
+                <div id="section6" class="dashboard-box">
+                    <h3>Leads</h3>
+                    <div class="visualization-placeholder" id="graph6">
+                        
                     </div>
                 </div>
-                <div id="settings" class="dashboard-box">
+                <div id="section7" class="dashboard-box">
                     <h3>Settings</h3>
-                    <div class="visualization-placeholder">
-                        <p>Visualization placeholder for Settings</p>
+                    <div class="visualization-placeholder" id="graph7">
+                        
                     </div>
                 </div>
             </div>
@@ -124,45 +123,46 @@
 
     <script>
         async function sendMessage() {
-            const inputField = document.getElementById("chat-input");
-            const message = inputField.value.trim();
-            if (!message) return;
-
-            const chatMessages = document.getElementById("chat-messages");
-
-            // Add User Message
-            const userMessage = document.createElement("div");
-            userMessage.className = "message user";
-            userMessage.innerHTML = `<p>${message}</p>`;
-            chatMessages.appendChild(userMessage);
-
-            // Clear input field
-            inputField.value = "";
-
-            try {
-                const response = await fetch("http://127.0.0.1:5000/chatbot", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ message })
-                });
-
-                const data = await response.json();
-                const botMessage = document.createElement("div");
-                botMessage.className = "message bot";
-                botMessage.innerHTML = `<p>${data.reply}</p>`;
-                chatMessages.appendChild(botMessage);
-            } catch (error) {
-                console.error("Error communicating with chatbot:", error);
-                const errorMessage = document.createElement("div");
-                errorMessage.className = "message bot";
-                errorMessage.innerHTML = `<p>Oops! Something went wrong.</p>`;
-                chatMessages.appendChild(errorMessage);
-            }
-
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+        const inputField = document.getElementById("chat-input");
+        const message = inputField.value.trim();
+        if (!message) return;
+    
+        const chatMessages = document.getElementById("chat-messages");
+    
+        // Add User Message
+        const userMessage = document.createElement("div");
+        userMessage.className = "message user";
+        userMessage.innerHTML = `<p>${message}</p>`;
+        chatMessages.appendChild(userMessage);
+    
+        // Clear input field
+        inputField.value = "";
+    
+        try {
+            const response = await fetch("http://127.0.0.1:5000/chatbot", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ message })
+            });
+    
+            const data = await response.json();
+            const botMessage = document.createElement("div");
+            botMessage.className = "message bot";
+            botMessage.innerHTML = `<p>${data.reply}</p>`;
+            chatMessages.appendChild(botMessage);
+        } catch (error) {
+            console.error("Error communicating with chatbot:", error);
+            const errorMessage = document.createElement("div");
+            errorMessage.className = "message bot";
+            errorMessage.innerHTML = `<p>Oops! Something went wrong.</p>`;
+            chatMessages.appendChild(errorMessage);
         }
+    
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
     </script>
+    <script src="script.js"></script>
 </body>
 </html>
