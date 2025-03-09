@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsightFlow - Unlock Insights, Predict Success</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <div class="logo-circle">IF</div>
+                    <span class="logo-text">InsightFlow</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="animate-fade-in">Unlock Insights, Predict Success</h1>
+                    <p class="animate-fade-in delay-1">InsightFlow helps you transform your data into actionable insights with powerful AI-driven analytics.</p>
+                    <div class="hero-buttons animate-fade-in delay-2">
+                        <a href="dashboard.html" class="btn btn-primary">Explore Dashboard <i class="fas fa-arrow-right"></i></a>
+                        <a href="about.html" class="btn btn-outline">Meet Our Team</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>Powerful Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Advanced Analytics</h3>
+                        <p>Transform complex data into clear, actionable insights with our advanced analytics tools.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>AI-Powered Predictions</h3>
+                        <p>Leverage machine learning to forecast trends and make data-driven decisions.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Interactive Dashboards</h3>
+                        <p>Customize your view with interactive dashboards that update in real-time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <input type="checkbox" id="chatbot-toggle" class="chatbot-checkbox">
+    <div class="chatbot-container">
+        <label for="chatbot-toggle" class="chatbot-button">
+            <i class="fas fa-comment"></i>
+        </label>
+        <div class="chatbot-panel">
+            <div class="chatbot-header">
+                <div class="chatbot-title">
+                    <div class="chatbot-icon"><i class="fas fa-comment"></i></div>
+                    <h3>InsightFlow Assistant</h3>
+                </div>
+                <label for="chatbot-toggle" class="chatbot-close">
+                    <i class="fas fa-times"></i>
+                </label>
+            </div>
+            <div class="chatbot-messages" id="chat-messages">
+                <div class="message bot">
+                    <p>Hi there! How can I help you today?</p>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <div class="file-upload">
+                    <i class="fas fa-paperclip"></i>
+                </div>
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button class="send-button" onmouseenter="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 InsightFlow. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        async function sendMessage() {
+            const inputField = document.getElementById("chat-input");
+            const message = inputField.value.trim();
+            if (!message) return;
+
+            const chatMessages = document.getElementById("chat-messages");
+
+            // Add User Message
+            const userMessage = document.createElement("div");
+            userMessage.className = "message user";
+            userMessage.innerHTML = `<p>${message}</p>`;
+            chatMessages.appendChild(userMessage);
+
+            // Clear input field
+            inputField.value = "";
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/chatbot", { // Changed to chatbot.py
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+                const botMessage = document.createElement("div");
+                botMessage.className = "message bot";
+                botMessage.innerHTML = `<p>${data.reply}</p>`;
+                chatMessages.appendChild(botMessage);
+            } catch (error) {
+                console.error("Error communicating with chatbot:", error);
+                const errorMessage = document.createElement("div");
+                errorMessage.className = "message bot";
+                errorMessage.innerHTML = `<p>Oops! Something went wrong.</p>`;
+                chatMessages.appendChild(errorMessage);
+            }
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+</body>
+</html>

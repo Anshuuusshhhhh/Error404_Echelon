@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - InsightFlow</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="Landing.html">
+                    <div class="logo-circle">IF</div>
+                    <span class="logo-text">InsightFlow</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Landing.html">Home</a></li>
+                    <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-chart-line"></i> Dashboard</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#overview" class="active">Overview</a></li>
+                <li><a href="#analytics">Analytics</a></li>
+                <li><a href="#predictions">Predictions</a></li>
+                <li><a href="#reports">Reports</a></li>
+                <li><a href="#insights">Insights</a></li>
+                <li><a href="#trends">Trends</a></li>
+                <li><a href="#settings">Settings</a></li>
+            </ul>
+        </aside>
+
+        <main class="dashboard-content">
+            <div class="dashboard-grid">
+                <div id="overview" class="dashboard-box active">
+                    <h3>Overview</h3>
+                    <div class="visualization-placeholder">
+                        <p>Visualization placeholder for Overview</p>
+                    </div>
+                </div>
+                <div id="analytics" class="dashboard-box">
+                    <h3>Analytics</h3>
+                    <div class="visualization-placeholder">
+                        <p>Visualization placeholder for Analytics</p>
+                    </div>
+                </div>
+                <div id="predictions" class="dashboard-box">
+                    <h3>Predictions</h3>
+                    <div class="visualization-placeholder">
+                        <p>Visualization placeholder for Predictions</p>
+                    </div>
+                </div>
+                <div id="reports" class="dashboard-box">
+                    <h3>Reports</h3>
+                    <div class="visualization-placeholder">
+                        <p>Visualization placeholder for Reports</p>
+                    </div>
+                </div>
+                <div id="insights" class="dashboard-box">
+                    <h3>Insights</h3>
+                    <div class="visualization-placeholder">
+                        <p>Visualization placeholder for Insights</p>
+                    </div>
+                </div>
+                <div id="trends" class="dashboard-box">
+                    <h3>Trends</h3>
+                    <div class="visualization-placeholder">
+                        <p>Visualization placeholder for Trends</p>
+                    </div>
+                </div>
+                <div id="settings" class="dashboard-box">
+                    <h3>Settings</h3>
+                    <div class="visualization-placeholder">
+                        <p>Visualization placeholder for Settings</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <input type="checkbox" id="chatbot-toggle" class="chatbot-checkbox">
+    <div class="chatbot-container dashboard-chatbot">
+        <label for="chatbot-toggle" class="chatbot-button">
+            <i class="fas fa-comment"></i>
+        </label>
+        <div class="chatbot-panel">
+            <div class="chatbot-header">
+                <div class="chatbot-title">
+                    <div class="chatbot-icon"><i class="fas fa-comment"></i></div>
+                    <h3>InsightFlow Assistant</h3>
+                </div>
+                <label for="chatbot-toggle" class="chatbot-close">
+                    <i class="fas fa-times"></i>
+                </label>
+            </div>
+            <div class="chatbot-messages" id="chat-messages">
+                <div class="message bot">
+                    <p>Hi there! How can I help you with your dashboard today?</p>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <div class="file-upload">
+                    <i class="fas fa-paperclip"></i>
+                </div>
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button class="send-button" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            const inputField = document.getElementById("chat-input");
+            const message = inputField.value.trim();
+            if (!message) return;
+
+            const chatMessages = document.getElementById("chat-messages");
+
+            // Add User Message
+            const userMessage = document.createElement("div");
+            userMessage.className = "message user";
+            userMessage.innerHTML = `<p>${message}</p>`;
+            chatMessages.appendChild(userMessage);
+
+            // Clear input field
+            inputField.value = "";
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/chatbot", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+                const botMessage = document.createElement("div");
+                botMessage.className = "message bot";
+                botMessage.innerHTML = `<p>${data.reply}</p>`;
+                chatMessages.appendChild(botMessage);
+            } catch (error) {
+                console.error("Error communicating with chatbot:", error);
+                const errorMessage = document.createElement("div");
+                errorMessage.className = "message bot";
+                errorMessage.innerHTML = `<p>Oops! Something went wrong.</p>`;
+                chatMessages.appendChild(errorMessage);
+            }
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+</body>
+</html>
