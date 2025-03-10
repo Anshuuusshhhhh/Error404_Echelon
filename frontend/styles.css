@@ -324,6 +324,25 @@ nav ul li a:hover, nav ul li a.active {
     justify-content: center;
     color: var(--gray-dark);
 }
+.graph-container {
+    width: 100%;
+    max-height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Table styling for Payment Behavior Heat Map */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
 
 /* About Page */
 .about-hero {

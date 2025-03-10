@@ -1,10 +1,11 @@
+# File: backend/scripts/chatbot.py
 import os
 from flask import Flask, request, jsonify
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
 from flask_cors import CORS
-import csv  # Add this line
+import csv
 
 load_dotenv()
 
@@ -21,7 +22,6 @@ model = "gemini-2.0-pro-exp-02-05"
 @app.route("/chatbot", methods=["POST"])
 def chatbot():
     user_input = request.json.get("message", "")
-
     if not user_input:
         return jsonify({"error": "No message provided"}), 400
 
@@ -34,7 +34,9 @@ def chatbot():
 
     dataset_summary = ""
     try:
-        with open('customer_data.csv', mode='r') as file:  # Change 'customer_data.csv' to your file name
+        # Ensure the file name and path are correct relative to chatbot.py.
+        data_file = os.path.join(os.path.dirname(__file__), 'data', 'churn_data.csv')
+        with open(data_file, mode='r') as file:
             reader = csv.reader(file)
             header = next(reader)  # Get the header
             dataset_summary = f"Dataset Header: {header}\n"
@@ -70,15 +72,14 @@ def chatbot():
 
                 For lead generation (if dataset_summary is provided):
                 - Include CustomerID and reason for lead.
-                - Format leads clearly and concisely
+                - Format leads clearly and concisely.
 
                 Additionally, if the Admin asks about customer behavioral shifts to predict satisfaction, consider:
-                - Analyzing customer reviews, social media (Twitter), and emails for sentiment, especiall
-                y when ambiguous language like "maybe" or "should" is used.
+                - Analyzing customer reviews, social media (Twitter), and emails for sentiment.
                 - Identifying patterns in customer communication that indicate changes in satisfaction.
                 - Providing insights into potential dissatisfaction triggers.
-                - Detecting subtle changes in language or tone, even with tricky sentiment cases.
-
+                - Detecting subtle changes in language or tone, even with ambiguous sentiment.
+                
                 If dataset_summary is provided, use it to give leads. Leads should include CustomerID and reason for lead.
 
                 Dataset Summary: {dataset_summary}
@@ -93,10 +94,12 @@ def chatbot():
     for chunk in client.models.generate_content_stream(
         model=model,
         contents=contents,
-        config=generate_content_config,):
+        config=generate_content_config,
+    ):
         response_text += chunk.text
-    response_text = response_text.replace('*','')
-    response_text = response_text.replace('#','')
+
+    # Remove unwanted characters if necessary
+    response_text = response_text.replace('*', '').replace('#', '')
     return jsonify({"reply": response_text})
 
 if __name__ == "__main__":

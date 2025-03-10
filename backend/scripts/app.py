@@ -6,7 +6,7 @@ import pandas as pd
 import pickle
 import sys
 
-# Add the 'scripts' directory to the Python path (if not already added)
+# Add current directory to Python path to import modules
 sys.path.append(os.path.join(os.path.dirname(__file__), '.'))
 
 from cumulative_churn import calculate_cumulative_churn
@@ -19,6 +19,7 @@ CORS(app)  # Enable cross-origin requests
 
 BASE_DIR = os.path.dirname(__file__)
 
+# Endpoint 1: Cumulative Churn
 @app.route('/api/cumulative_churn', methods=['GET'])
 def get_cumulative_churn_endpoint():
     try:
@@ -34,6 +35,7 @@ def get_cumulative_churn_endpoint():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+# Endpoint 2: Cumulative CHI
 @app.route('/api/cumulative_chi', methods=['GET'])
 def get_cumulative_chi_endpoint():
     try:
@@ -42,6 +44,7 @@ def get_cumulative_chi_endpoint():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+# Endpoint 3: Individual CHI (for gauge and ranking)
 @app.route('/api/individual_chi', methods=['GET'])
 def get_individual_chi_endpoint():
     try:
@@ -53,6 +56,7 @@ def get_individual_chi_endpoint():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+# Endpoint 4: Engagement Velocity Score (EVS)
 @app.route('/api/engagement_velocity', methods=['GET'])
 def get_engagement_velocity_endpoint():
     try:
@@ -61,18 +65,16 @@ def get_engagement_velocity_endpoint():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# NEW: Payment Behavior Endpoints
-
-# Cumulative Payment Behavior Index (Average across all users)
+# Endpoint 5: Cumulative Payment Behavior Index (PBI)
 @app.route('/api/payment_behavior', methods=['GET'])
 def get_payment_behavior_endpoint():
     try:
-        cumulative_pbi = calculate_cumulative_PBI()
-        return jsonify({"cumulative_pbi": round(cumulative_pbi, 2)})
+        pbi_value = calculate_cumulative_PBI()
+        return jsonify({"cumulative_pbi": round(pbi_value, 2)})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# Individual Payment Behavior Index for each user (for heat map table, etc.)
+# Endpoint 6: Individual Payment Behavior Index (for heat map)
 @app.route('/api/individual_payment_behavior', methods=['GET'])
 def get_individual_payment_behavior_endpoint():
     try:
